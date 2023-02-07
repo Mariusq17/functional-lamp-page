@@ -1,0 +1,352 @@
+*, *::before, *::after {
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+:root {
+    --cyan: #027b66;
+    --black-grey: #1c1e26;
+    --white: #fff;
+    --green: #0d8d0b;
+    --grey: #b1aeae;
+    --light-grey: #ece9e9;
+    --size: 82vh;
+    --image-size: calc(var(--size) * 2 / 6);
+    --corner-size: calc((var(--size) - var(--image-size)) / 2);
+}
+body {
+    background-color: var(--black-grey);
+    overflow-y: auto;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+.header {
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3vh 5vh;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+}
+.nav-bar a,
+.header a {
+    text-decoration: none;
+    color: var(--white);
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+.logo span {
+    color: var(--cyan);
+}
+.burger-menu {
+    --size: 30px;
+    width: var(--size);
+    height: calc(var(--size) * .75);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+}
+.bar {
+    display: block;
+    width: 100%;
+    height: 5px;
+    background-color: white;
+    border-radius: 5px;
+}
+.nav-bar {
+    display: flex;
+    flex-direction: column;
+    right: -100%;
+    justify-content: flex-start;
+    align-items: center;
+    width: min(50vh, 80%);
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    background-color: var(--cyan);
+    z-index: 3;
+    padding-top: 5rem;
+    transition: 300ms;
+}
+.nav-bar.active {
+    right: 0;
+}
+.nav-bar .close-menu {
+    font-size: 1rem;
+    position: absolute;
+    top: 3vh;
+    right: 5vh;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-bar .close-menu span {
+    font-size: 2rem;
+}
+.dark-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, .6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    user-select: none;
+    display: none;
+}
+.dark-background.active {
+    display: block;
+}
+.nav-bar > ul {
+    display: flex;
+    gap: 1.5rem;
+    list-style-type: none;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.nav-bar .nav-bar-option{ 
+    position: relative;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.nav-bar .nav-bar-option::before {
+    width: 0px;
+    content: "";
+    position: absolute;
+    height: 10px;
+    background-color: var(--white);
+    border-radius: 16px;
+    bottom: -40%;
+    left: 0%;
+    transition: 200ms;
+}
+.nav-bar .nav-bar-option::after {
+    content: "";
+    position: absolute;
+    height: 10px;
+    width: 10px;
+    background-color: var(--white);
+    border-radius: 16px;
+    left: -30px;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 200ms;
+} 
+.nav-bar .nav-bar-option:hover::before {
+    width: 100%;
+    height: 5px;
+}
+.group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+.header .button {
+    width: 2.5rem;
+    height: 1.25rem;
+    background-color: var(--green);
+    border-radius: 900px;
+    position: relative;
+    transition: 200ms;
+    cursor: pointer;
+}
+.header .button.off {
+    background-color: var(--light-grey);
+} 
+.header .button::before {
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--grey);
+    content: "";
+    position: absolute;
+    right: 5%;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: 200ms;
+    border-radius: 50%;
+} 
+.header .button.off::before {
+    right: 55%;
+}
+.container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: calc(100% - 10vw);
+    margin: 0 auto;
+    min-height: calc(100vh - 100px);
+}
+.infos {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.infos .main-title {
+    color: var(--white);
+    font-size: 6rem;
+    font-weight: 400;
+}
+.infos p {
+    color: var(--white);
+    font-weight: 500;
+    font-size: .95rem;
+}
+
+.infos .go-to {
+    padding: 10px 20px;
+    background-color: var(--cyan);
+    border-radius: 900px;
+    color: var(--white);
+    font-weight: 400;
+    text-decoration: none;
+    font-size: .9rem;
+    border: 2px solid var(--cyan);
+    transition: 200ms;
+}
+.infos .go-to:hover {
+    background-color: transparent;
+}
+.light-levels {
+    width: 25%;
+    align-self: flex-end;
+    margin-top: 3rem;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-end;
+}
+.light-levels span {
+    color: var(--white);
+}
+.light-levels span.off {
+    color: rgba(255, 255, 255, 0.5);
+}
+.light-levels input {
+    accent-color: var(--cyan);
+    cursor: grab;
+}
+.light-levels input:active {
+    cursor: grabbing;
+}
+.lamp {
+    position: absolute;
+    top: -100%;
+    left: 15%;
+    width: calc(var(--size) / 2.75);
+    height: 60vh;
+    background-image: url(./images/lampa.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation: showLamp 750ms 0s forwards;
+    z-index: -1;
+}
+.light {
+    --light-level: 1;
+    position: relative;
+    width: var(--size);
+    /* height: calc(var(--size) / 2); */
+    height: 0;
+    background-image: linear-gradient(180deg, rgba(245, 222, 179, var(--light-level)) -10%, transparent 75%);
+    top: 99%;
+    left: 50%;
+    transform: translate(-50%);
+    z-index: -1;
+    /* visibility: hidden; */
+    animation: transition-of-the-light 100ms 750ms forwards;
+}
+.corner {
+    height: 0;
+    width: var(--corner-size);
+    position: absolute;
+    /* display: none; */
+}
+.corner-right {
+    border-top: calc(var(--size) / 2) solid var(--black-grey);
+    border-left: var(--corner-size) solid transparent;
+    right: -1px;
+    top: 0;
+}
+.corner-left {
+    border-top: calc(var(--size) / 2) solid var(--black-grey);
+    border-right: var(--corner-size) solid transparent;
+    top: 0;
+    left: -1px;
+}
+@keyframes showLamp {
+    100% {
+        top: -10%;
+    }
+}
+@keyframes transition-of-the-light {
+    /* Initial am incercat sa folosesc propietatea "visibility de parca s-ar aprinde
+    instant ca un bec, insa mi se pare ca e mai fancy folosind "height" - ul */
+    100% {
+        /* visibility: visible; */
+        height: calc(var(--size) / 2);
+    }
+}
+@media (max-width: 1100px) {
+    :root{
+        --size: 50vh;
+    }
+    .lamp {
+        left: 50%;
+        transform: translateX(-50%);
+    } 
+    .light {
+        top: 82%
+    }
+    .infos {
+        width: 100%;
+    }
+    .corner {
+        top: -1px;
+    }
+    .corner-right {
+        right: -2px;
+    }
+    .corner-left {
+        left: -1px;
+    }
+    .container {
+        margin-top: calc(var(--size) + 3rem);
+        margin-bottom: 3rem;
+        align-items: flex-start;
+        min-height: max-content;
+    }
+    .infos .main-title {
+        font-size: 4rem;
+    }
+    .infos p {
+        font-size: .9rem;
+    }
+}
+
+
+
+
+
+
+
+/*
+    In caz ca vreau vreodata sa fac vreun trapez, se face astfel: 
+.trapezoid {
+    border-right: var(--trapezoid-width) solid transparent;
+    border-bottom: var(--trapezoid-height) solid #66B2ff;
+    border-left: var(--trapezoid-width) solid transparent;
+    width: var(--trapezoid-height);
+    transform: translate(50%);
+  } */
